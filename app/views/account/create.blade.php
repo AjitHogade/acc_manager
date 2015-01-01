@@ -55,6 +55,7 @@
           </ul>
           <input type="hidden" style="display:none;" value="" name="members" id="members">
 @if(isset($account))
+<!-- expense details -->
 <table class="table">
   <tr>
     <th>Title</th>
@@ -69,10 +70,10 @@
       $mycost = 0; 
 $member_expense = ExpenseMember::where('expense_id','=',$expense->id)->where('member_id','=',Sentry::getUser()->id)->first();
 if(isset($member_expense))
-  $total_expense = $expense->total_expenses;
+ 
   $mycost = $member_expense->expense_foreach;
   $total+= $mycost;
-   $total_expenses+= $total_expense;
+ 
         ?>
 
       <tr>
@@ -84,7 +85,7 @@ if(isset($member_expense))
      <?php  }
 
     ?>
-<tr><td></td><td>{{total_expenses}}</td><td><b>{{$total}}</b></td><td></td>
+<tr><td></td><td></td><td><b>{{$total}}</b></td><td></td>
 </table>
 @endif
 
