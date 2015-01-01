@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAcountsMembersTable extends Migration {
+class CreateMemberExpensesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class CreateAcountsMembersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('member_expense', function(Blueprint $table)
+		Schema::create('member_expenses', function(Blueprint $table)
 		{
 		$table->increments('id');
-		$table->integer('expense_id');
 		$table->integer('account_id');
-        $table->integer('member_id');       
+        $table->string('title',255);
+        $table->integer('created_by');
         $table->timestamps();
 		});
 	}

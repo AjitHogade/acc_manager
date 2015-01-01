@@ -39,6 +39,11 @@ Route::group(array('before' => 'auth'), function()
 {
    
     //Desktop View
+    Route::get('/', function()
+    {
+        return View::make('desktop.index');
+    });
+      //Desktop View
     Route::get('/desktop', function()
     {
         return View::make('desktop.index');
@@ -55,6 +60,10 @@ Route::group(array('before' => 'auth'), function()
 //Send Friend Request
     Route::get('/friend/send_friend_request', array(
     'uses' => 'FriendsController@sendFriendRequest'
+    ));
+//Send Friend Request
+    Route::get('/account/create_expense', array(
+    'uses' => 'ExpensesController@insertAccountExpense'
     ));
 //Accept Friend Request
     Route::get('/friend/accept_friend_request', array(
@@ -94,6 +103,7 @@ Route::group(array('before' => 'auth'), function()
    
     Route::resource('account', 'AccountController');
     Route::resource('friend', 'FriendsController');
+    Route::resource('expense', 'ExpensesController');
 
    
 });

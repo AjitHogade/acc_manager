@@ -23,9 +23,9 @@
 <script src="/media/js/bootstrap.min.js"></script>
 <!-- JQuery JS -->
 <script src="/media/js/jquery.js"></script>
-<!-- JQuery UI JS 
-<script type="text/javascript" src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>-->
-<script src="/media/js/jquery-ui.min.js"></script>
+ JQuery UI JS 
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<!--<script src="/media/js/jquery-ui.min.js"></script>-->
 <!-- TAG-IT JS -->
 <script type="text/javascript" src="/media/js/tagit.js" charset="UTF-8"></script>
 

@@ -14,7 +14,7 @@
         
 
         <div class="form-group">
-          {{ Form::text('user',null,array('id'=>'user','class'=>'form-control','placeholder'=>'Type here to search','required'=>'')) }}
+          {{ Form::text('user',null,array('id'=>'user','class'=>'form-control','placeholder'=>'Type here to search','required'=>'','autocomplete'=>'false')) }}
           </div>
           {{ Form::button('Search!',array('class'=>'btn btn-primary','onclick'=>'search()')) }}
           <div style="clear:both"></div>
@@ -54,7 +54,7 @@ loadFriends();
 
 function search(){
   //alert("searching");
-var user = $("#user").val();
+var user = $("#user").val(); 
 //alert(user);
 if(user.length!=""){
 $.ajax({

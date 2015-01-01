@@ -151,7 +151,7 @@ public function logout()
 	public function searchUser()
 	{
 		$user_name = $_GET['user'];
-		$user = User::where('username','=',$user_name)->first();
+		$user = User::where('username','=',$user_name)->where('username','!=',Sentry::getUser()->username)->first();
 		if($user)
 			return $user->toJSON();
 		else

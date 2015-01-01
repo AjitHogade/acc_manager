@@ -227,7 +227,7 @@ class FriendsController extends \BaseController
 	{
 		$name = $_GET['keywords'];
 		$user_id = Sentry::getUser()->id;
-		$friends = Friend::join('users','friends.user_id','=','users.id')->where('friends.user_id','=',$user_id)->where('users.name','LIKE',$name.'%')->get(array('users.username','users.name'));
+		$friends = Friend::join('users','friends.friend_id','=','users.id')->where('friends.user_id','=',$user_id)->where('users.name','LIKE',$name.'%')->where('friends.status','=',1)->get(array('users.username','users.name'));
 		return $friends->toJSON();
 		
 	}

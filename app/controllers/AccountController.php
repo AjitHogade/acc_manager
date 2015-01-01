@@ -32,18 +32,19 @@ class AccountController extends \BaseController {
 	 */
 	public function store()
 	{
-		{
 		$account = new Account;
-		$account->name = Input::get('account_name');
+		$account->name = Input::get('name');
 		$account->created_by = Sentry::getUser()->name;
 		$account->save();
 		$id_account = $account->id;
 		$member_string = Input::get('members');
 		$members = explode(',', $member_string);
 		array_pop($members);
+
+
 		foreach ($members as $member_name) 
 		{
-			$member = user::where('username','=',$member_name)->first(); // assuming  there are no duplicates and there is alway one
+			$member = User::where('username','=',$member_name)->first(); // assuming  there are no duplicates and there is alway one
 			if(isset($member)){
 			$account_member = new AccountMember;
 			$account_member->account_id = 	$id_account;
@@ -53,7 +54,20 @@ class AccountController extends \BaseController {
 				//error processing for client not found
 			}
 		}
-	}
+		
+		//add yourself
+			$member = Sentry::getUser(); // assuming  there are no duplicates and there is alway one
+			if(isset($member)){
+			$account_member = new AccountMember;
+			$account_member->account_id = 	$id_account;
+			$account_member->member_id = $member->id;
+			$account_member->save();
+			}else{
+				//error processing for client not found
+			}
+
+	return View::make('account.index');
+
 	}
 
 
@@ -77,7 +91,8 @@ class AccountController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$account = Account::with('account_members')->find($id);
+		return View::make('account.create',array('account'=>$account));
 	}
 
 
@@ -89,7 +104,19 @@ class AccountController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		{
+		$expense = new Expense;
+		$accounts = Account::find($id);  
+		$account_id = $accounts;
+		$expense->account_id = $account_id;
+		$expense->title = Input::get('expense_title');
+		$expense->total_expenses = Input::get('amount');
+		$expense->created_by = Sentry::getUser()->id;
+		$expense->save();
+		echo "done";
+	}
+
+	
 	}
 
 
